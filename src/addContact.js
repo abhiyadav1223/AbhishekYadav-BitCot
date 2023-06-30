@@ -1,7 +1,13 @@
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { addUser } from "./store/userData"
 export default function AddContact() {
+
+  const [msg , setName] = useState()
+  const [email , setEmail] = useState()
+  const [phone , setPhone] = useState()
+  const [addr , setAdd] = useState()
+
   var namebox = useRef()
   var emailbox = useRef()
   var phonebox = useRef()
@@ -19,40 +25,45 @@ export default function AddContact() {
     console.log(ob);
     dispatch(addUser(ob))
     event.preventDefault()
+    event.target.reset();
   }
-  var reset = (e) => {
-    e.preventDefault()
+
+  var reset = (e)=>{
+    setName(" ")
+    setEmail(" ")
+    setPhone(" ")
+    setAdd(" ")
   }
   return <>
-    <div className=" border-2 border-black inline-block text-center w-80 mx-20">
+    <div className=" border-2 border-black text-center w-auto mx-10">
       <div className="font-bold text-2xl">
         <h1>Add Contact</h1>
       </div>
       <hr />
-      <form>
-        <div className="space-y-2 my-5">
-          <div>
-            <label >Name :</label>
-            <input type="text" ref={namebox} placeholder="Enter Your Name" className="border-2 rounded border-black mx-5" />
+      <form onSubmit={save}>
+        <div className="space-y-2 my-5  ">
+          <div className="flex space-x-14 justify-center">
+            <div className=" w-36 text-right py-1">Name :</div>
+            <div className="w-52 text-left py-1"> <input type="text" ref={namebox} value={msg} onChange={(e)=>setName(e.target.value)} placeholder="Enter Your Name" className=" rounded border-black border-b-2 text-center" required /></div>
           </div>
-          <div>
-            <label className="mx-1">Email:</label>
-            <input type="text" ref={emailbox} placeholder="Enter Your Email" className="border-2 rounded border-black mx-3" />
+          <div className="flex justify-center space-x-14" >
+            <div className=" w-36 text-right py-1">Email :</div>
+            <div className="w-52 text-left py-1"> <input type="text" ref={emailbox} value={email} onChange={(e)=>setEmail(e.target.value)} placeholder="Enter Your Email" className="border-b-2 rounded border-black text-center" required /></div>
           </div>
-          <div >
-            <label>Phone :</label>
-            <input type="text" ref={phonebox} placeholder="Enter Your Phone" className="border-2 rounded border-black mx-5" />
+          <div  className="flex justify-center space-x-14">
+            <div className=" w-36 text-right py-1">Phone :</div>
+            <div className="w-52 text-left py-1">  <input type="text" ref={phonebox} value={phone} onChange={(e)=>setPhone(e.target.value)} placeholder="Enter Your Phone" className="border-b-2 rounded border-black text-center" required min={10} /></div>
           </div>
-          <div >
-            <label>Address :</label>
-            <input type="text" ref={addbox} placeholder="Enter Your Address" className="border-2 rounded border-black mx-5" />
+          <div  className="flex justify-center space-x-14">
+            <div className=" w-36 text-right py-1">Address :</div>
+            <div className="w-52 text-left py-1"> <input type="text" ref={addbox} value={addr} onChange={(e)=>setAdd(e.target.value)} placeholder="Enter Your Address" className="border-b-2 rounded border-black text-center" required /></div>
           </div>
         </div>
         <div className="my-2">
-          <button onClick={save} className="bg-blue-700 text-white font-bold rounded px-2 py-1 mx-2">Submit</button>
-          <button onClick={reset} className="bg-black text-white font-bold rounded px-2 py-1 mx-2">Reset</button>
+          <button type="submit" className="bg-blue-700 text-white font-bold rounded px-2 py-1 mx-2">Submit</button>
+          <button type="button" onClick={reset} className="bg-black text-white font-bold rounded px-2 py-1 mx-2">Reset</button>
         </div>
-      </form>
-    </div>
+      </form >
+    </div >
   </>
 }

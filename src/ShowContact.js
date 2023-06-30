@@ -6,25 +6,29 @@ export default function ShowContact() {
   console.log(userVal[0]);
   console.log(data);
   return <>
-    <div className=" border-2 border-black inline-block text-center w-80 mx-20">
+    <div className=" border-2 border-black  text-center w-auto mx-20">
       <div className="font-bold text-2xl">
         <h1>User Details</h1>
       </div>
       <hr />
-      {data.filter((val)=> val.id==userVal[0]).map((value) =><div className="space-y-2 my-5">
-      <div>
-        <label >Name : {value.name}</label>
-      </div>
-      <div>
-        <label className="mx-1">Email: {value.email}</label>
-      </div>
-      <div >
-        <label>Phone : {value.mobile}</label>
-      </div>
-      <div >
-        <label>Address : {value.address}</label>
-      </div>
-    </div>
+      {data.filter((val)=> val.id==userVal[0]).map((value) =><div className="space-y-2 my-5  ">
+          <div className="flex space-x-14 justify-center">
+            <div className=" w-36 text-right py-1">Name :</div>
+            <div className="w-52 text-left py-1">{value.name}</div>
+          </div>
+          <div className="flex justify-center space-x-14" >
+            <div className=" w-36 text-right py-1">Email :</div>
+            <div className="w-52 text-left py-1">{value.email}</div>
+          </div>
+          <div  className="flex justify-center space-x-14">
+            <div className=" w-36 text-right py-1">Phone :</div>
+            <div className="w-52 text-left py-1">{value.mobile}</div>
+          </div>
+          <div  className="flex justify-center space-x-14">
+            <div className=" w-36 text-right py-1">Address :</div>
+            <div className="w-52 text-left py-1">{value.address}</div>
+          </div>
+        </div>
 )}
 
     </div>
