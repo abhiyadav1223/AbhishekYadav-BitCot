@@ -3,21 +3,21 @@ import ShowContact from "./ShowContact";
 import EditContact from "./EditContact";
 import AddContact from "./addContact";
 import { useDispatch, useSelector } from "react-redux";
-import { addVal, findName, removeUser } from "./store/userData";
+import { addVal, finddata, removeUser } from "./store/userData";
 export default function App() {
   var data = useSelector(state => state.data.value)
   var dispatch = useDispatch()
   var rmvUser = useDispatch()
   var findData = useDispatch()
 
-  var find = (e)=>{
-    findData(findName(e.target.value))
-  }
+var find = (e)=>{
+  findData(finddata(e.target.value))
+}
   return <>
     <div className="bg-black text-white  mx-20 my-20">
-      <div className="flex mx-14 space-x-10 py-3 text-3xl">
-        <h2 className="px-2 py-1">All Contact</h2>
-        <Link to="/add"><button className="text-blue-400 bg-blue-900 px-2 py-1 rounded font-bold ">Add</button></Link>
+      <div className="flex mx-14 space-x-10 py-3 ">
+        <h2 className="px-2 py-1 text-3xl shadow-inner shadow-rose-600 ">All Contact</h2>
+        <Link to="/add"><button className="text-blue-400 bg-blue-900 px-2 py-2 rounded  font-bold hover:shadow-sm hover:shadow-blue-500 ">Add new</button></Link>
       </div>
 
       <div className="text-center">
